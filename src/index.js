@@ -7,15 +7,15 @@ function component() {
     //新增一个按钮
     var btn = document.createElement('button')
 
-    // 配置按钮内显示的内容和点击事件
-    btn.innerHTML = 'Click me and check the console!';
-    btn.onclick = printMe;
-
-    // 按钮作为div的子节点
-    element.appendChild(btn);
     element.classList.add('test')
     // 对于执行这一行是必需的
     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+     // 配置按钮内显示的内容和点击事件
+     btn.innerHTML = 'Click me and check the console!';
+     btn.onclick = printMe;
+ 
+     // 按钮作为div的子节点
+     element.appendChild(btn);
   
     return element;
   }
