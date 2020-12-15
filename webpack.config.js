@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   // 设置入口路径
@@ -6,6 +7,11 @@ module.exports = {
     app: './src/index.js',
     print: './src/print.js'
   },
+  plugins:[
+    new HtmlWebpackPlugin({
+      title: 'Output Management'
+    })
+  ],
   // 自定义输出
   output: {
     filename: '[name].bundle.js',
