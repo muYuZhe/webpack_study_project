@@ -22,3 +22,11 @@ function component() {
   
   // 在body中创建子节点
   document.body.appendChild(component());
+
+  if (module.hot) {
+       module.hot.accept('./print.js', function() {
+         console.log('Accepting the updated printMe module!');
+         printMe();
+       })
+     }
+    
