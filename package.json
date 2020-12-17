@@ -19,5 +19,9 @@
   },
   "dependencies": {
     "lodash": "^4.17.20"
-  }
+  },
+  "sideEffects": [
+    "./src/math.js",
+    "*.css"
+  ]
 }
