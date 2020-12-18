@@ -1,4 +1,3 @@
-import _ from 'Lodash';
 import './mySass/css/mySass.css'
 import printMe from './print.js'
 import { cube } from './math.js';
@@ -7,8 +6,10 @@ if (process.env.NODE_ENV!=='production') {
   console.log('Looks like we are in development mode!');
 }
 
-function component() {
-    // 在document对象中创建一个元素div
+function getComponent() {
+  // 这里webpackChunkName是当作注释传入
+    return import(/* webpackChunkName: "lodash" */ 'lodash').then(_=>{
+          // 在document对象中创建一个元素div
     var element = document.createElement('pre');
     //新增一个按钮
     var btn = document.createElement('button')
@@ -26,10 +27,14 @@ function component() {
      element.appendChild(btn);
   
     return element;
+
+    }).catch(error => 'An error occurred while loading the component');
   }
   
   // 在body中创建子节点
-  document.body.appendChild(component());
+  getComponent().then(component => {
+    document.body.appendChild(component);
+  })
 
   // if (module.hot) {
   //      module.hot.accept('./print.js', function() {
