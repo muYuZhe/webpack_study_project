@@ -1,4 +1,4 @@
-// import _ from 'Lodash';
+import _ from 'Lodash';
 import './mySass/css/mySass.css'
 import printMe from './print.js'
 import { cube } from './math.js';
