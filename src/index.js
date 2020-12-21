@@ -1,6 +1,7 @@
 import './mySass/css/mySass.css'
 import { cube } from './math.js';
 import _ from 'lodash';
+// import Print from './print.js'
 
 if (process.env.NODE_ENV!=='production') {
   console.log('Looks like we are in development mode!');
@@ -20,11 +21,7 @@ function component() {
     // 配置按钮内显示的内容和点击事件
      btn.innerHTML = 'Click me and check the console!';
      // 按钮点击时引入print.js代码块调用打印函数
-     btn.onclick = e => import(/* webpackChunkName: "print" */ './print').then(module => {
-        var print = module.default;
-  
-        print();
-     });
+    //  btn.onclick = Print.bind(null,'my message!!!!!!!!');
  
     // 按钮作为div的子节点
      element.appendChild(btn);
