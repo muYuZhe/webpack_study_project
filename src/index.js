@@ -1,15 +1,13 @@
 import './mySass/css/mySass.css'
-import printMe from './print.js'
 import { cube } from './math.js';
+import _ from 'lodash';
 
 if (process.env.NODE_ENV!=='production') {
   console.log('Looks like we are in development mode!');
 }
 
-function getComponent() {
-  // 这里webpackChunkName是当作注释传入
-    return import(/* webpackChunkName: "lodash" */ 'lodash').then(_=>{
-          // 在document对象中创建一个元素div
+function component() {
+    // 在document对象中创建一个元素div
     var element = document.createElement('pre');
     //新增一个按钮
     var btn = document.createElement('button')
@@ -21,20 +19,20 @@ function getComponent() {
          ].join('\n\n');
     // 配置按钮内显示的内容和点击事件
      btn.innerHTML = 'Click me and check the console!';
-     btn.onclick = printMe;
+     btn.onclick = e => import(/* webpackChunkName: "print" */ './print').then(module => {
+        var print = module.default;
+  
+        print();
+     });
  
     // 按钮作为div的子节点
      element.appendChild(btn);
   
     return element;
-
-    }).catch(error => 'An error occurred while loading the component');
   }
   
   // 在body中创建子节点
-  getComponent().then(component => {
-    document.body.appendChild(component);
-  })
+    document.body.appendChild(component());
 
   // if (module.hot) {
   //      module.hot.accept('./print.js', function() {
