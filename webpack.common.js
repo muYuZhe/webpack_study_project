@@ -13,7 +13,7 @@
       })
     ],
     output: {
-      filename: '[name].bundle.js',
+      filename: '[name].[chunkhash].js',
       path: path.resolve(__dirname, 'dist')
       // publicPath: '/'
     },
